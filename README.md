@@ -2,8 +2,7 @@
 
 Docker container for [Domoticz][3]
 
-"Domoticz is a very light weight home automation system that lets you monitor and configure various devices like: lights, switches, various sensors/meters like temperature, rainfall, wind, Ultraviolet (UV) radiation, electricity usage/production, gas consumption, water consumption and much more. Notifications/alerts can be sent to any mobile device.
-The best of all, is that Domoticz is open source and completely free! You only need to invest in hardware."
+"Domoticz is a very light weight home automation system that lets you monitor and configure various devices like: lights, switches, various sensors/meters like temperature, rainfall, wind, Ultraviolet (UV) radiation, electricity usage/production, gas consumption, water consumption and much more. Notifications/alerts can be sent to any mobile device. The best of all, is that Domoticz is open source and completely free! You only need to invest in hardware."
 
 ## Install dependencies
 
@@ -28,7 +27,7 @@ or
 
 Where xxxxx is the port assigned by you for the container if not docker will assigned one for it.
 
-## Accessing the opendcim applications:
+## Accessing the Domoticz applications:
 
 After that check with your browser at addresses plus the port assigined by docker or you:
 
