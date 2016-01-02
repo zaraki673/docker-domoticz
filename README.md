@@ -19,11 +19,11 @@ To install docker in Ubuntu 15.04 use the commands:
 
 To run container use the command below:
 
-    $ docker run -d -p 8080 –device /dev/ttyUSB1 quantumobject/docker-domoticz
+    $ docker run -d -p 8080 –device /dev/ttyUSB1 cyrilix/docker-domoticz
 
 or
 
-    $ docker run -d -p xxxxx:8080 –device /dev/ttyUSB1 quantumobject/docker-domoticz
+    $ docker run -d -p xxxxx:8080 –device /dev/ttyUSB1 cyrilix/docker-domoticz
 
 Where xxxxx is the port assigned by you for the container if not docker will assigned one for it.
 
@@ -45,11 +45,8 @@ About Domoticz: [www.domoticz.com][1]
 
 To help improve this container [docker-domoticz][5]
 
-For additional info about us and our projects check our site [www.quantumobject.com][6]
 
 [1]:http://www.domoticz.com/
 [2]:https://www.docker.com
 [3]:https://www.domoticz.com/wiki/Linux
 [4]:http://docs.docker.com
-[5]:https://github.com/QuantumObject/docker-domoticz
-[6]:http://www.quantumobject.com/
