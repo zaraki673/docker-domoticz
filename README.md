@@ -19,7 +19,7 @@ To install docker in Ubuntu 15.04 use the commands:
 
 To run container use the command below:
 
-    $ docker run -d -p 8080 –device /dev/ttyUSB1 cyrilix/docker-domoticz
+    $ docker run -d -p 8080 –device /dev/ttyUSB1 -v scripts:/scripts cyrilix/docker-domoticz
 
 or
 
