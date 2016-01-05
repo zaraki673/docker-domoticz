@@ -1,7 +1,7 @@
 #name of container: docker-domoticz
 #versison of container: 0.1.0
 FROM debian
-MAINTAINER Angel Rodriguez  "cynoffic@cyrilix.fr"
+MAINTAINER Cyrille Nofficial  "cynoffic@cyrilix.fr"
 
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
