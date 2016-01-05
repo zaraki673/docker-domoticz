@@ -10,6 +10,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q build
                     libsqlite3-dev curl libcurl4-openssl-dev libusb-dev \
                     zlib1g-dev libssl-dev git\
                     libudev-dev \
+                    mplayer2 \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
