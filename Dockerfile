@@ -3,6 +3,8 @@
 FROM debian
 MAINTAINER Cyrille Nofficial  "cynoffic@cyrilix.fr"
 
+ENV VERSION=2.3530
+
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q build-essential\
@@ -22,7 +24,7 @@ RUN git clone https://github.com/OpenZWave/open-zwave.git ;\
 
 #Compile Domoticz
 RUN git clone https://github.com/domoticz/domoticz.git domoticz ;\
-    cd domoticz; cmake -J4 -DCMAKE_BUILD_TYPE=Release . ;\
+    cd domoticz; git checkout ${VERSION} ;cmake -J4 -DCMAKE_BUILD_TYPE=Release . ;\
     make && make install &&\
     cd ../ && rm -r domoticz
 
