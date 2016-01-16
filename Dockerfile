@@ -30,7 +30,7 @@ RUN git clone https://github.com/domoticz/domoticz.git domoticz ;\
     cd ../ && rm -r domoticz
 
 RUN mkdir -p /opt/domoticz/db/ /opt/domoticz/backup  /scripts
-VOLUME ["/opt/domoticz/scripts"]
+VOLUME ["/opt/domoticz/scripts", "/opt/domoticz/backups"]
 
 # to allow access from outside of the container  to the container service
 # at that ports need to allow access from firewall if need to access it outside of the server.
