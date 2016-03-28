@@ -3,7 +3,7 @@
 FROM debian
 MAINTAINER Cyrille Nofficial  "cynoffic@cyrilix.fr"
 
-ENV VERSION=2.3530
+ENV VERSION=3.4834
 
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
