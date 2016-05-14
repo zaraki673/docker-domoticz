@@ -14,6 +14,8 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q build
                     libudev-dev \
                     mplayer2 \
                     python3 \
+                    python3-dev \
+                    libboost-python1.55-dev \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
@@ -25,7 +27,7 @@ RUN git clone https://github.com/OpenZWave/open-zwave.git ;\
 
 #Compile Domoticz
 RUN git clone https://github.com/domoticz/domoticz.git domoticz ;\
-    cd domoticz; git checkout ${VERSION} ;cmake -J4 -DCMAKE_BUILD_TYPE=Release . ;\
+    cd domoticz; git checkout ${VERSION} ;cmake -J4 -DCMAKE_BUILD_TYPE=Release -DUSE_PYTHON=YES . ;\
     make && make install &&\
     cd ../ && rm -r domoticz
 
