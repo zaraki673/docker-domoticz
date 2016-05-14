@@ -14,6 +14,8 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q build
                     libudev-dev \
                     mplayer2 \
                     python3 \
+                    python \
+                    python-dev \
                     python3-dev \
                     libboost-python1.55-dev \
                     && apt-get clean \
