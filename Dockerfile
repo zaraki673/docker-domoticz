@@ -16,7 +16,6 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q build
                     python3 \
                     python \
                     python-dev \
-                    python3-dev \
                     libboost-python1.55-dev \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
