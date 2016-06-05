@@ -16,10 +16,19 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q build
                     python3 \
                     python \
                     python-dev \
+                    python-libxml2 \
+                    libxml2-dev \
+                    python-pip \
+                    python3-pip \
+                    libxslt-dev \
+                    lib32z1-dev \
                     libboost-python1.55-dev \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
+
+RUN pip install caldav && pip3 install caldav
+
 #Compile OpenZWave
 RUN git clone https://github.com/OpenZWave/open-zwave.git ;\
     ln -s open-zwave open-zwave-read-only ; \
