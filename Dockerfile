@@ -23,11 +23,21 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q build
                     libxslt-dev \
                     lib32z1-dev \
                     libboost-python1.55-dev \
+                    wget \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
 
 RUN pip install caldav && pip3 install caldav
+
+# Rebuild cmake because stable version (3.0.2) incompatible with openssl
+RUN wget -O- https://cmake.org/files/v3.5/cmake-3.5.2.tar.gz | tar xzv \
+            && cd cmake-3.5.2 \
+            && ./configure --prefix=/opt/cmake \
+            && make \
+            && make install \
+            && cd ../
+
 
 #Compile OpenZWave
 RUN git clone https://github.com/OpenZWave/open-zwave.git ;\
@@ -37,9 +47,9 @@ RUN git clone https://github.com/OpenZWave/open-zwave.git ;\
 
 #Compile Domoticz
 RUN git clone https://github.com/domoticz/domoticz.git domoticz ;\
-    cd domoticz; git checkout ${VERSION} ;cmake -J4 -DCMAKE_BUILD_TYPE=Release -DUSE_PYTHON=YES . ;\
-    make && make install &&\
-    cd ../ && rm -r domoticz
+    cd domoticz; git checkout ${VERSION} ;/opt/cmake/bin/cmake -J4 -DCMAKE_BUILD_TYPE=Release -DUSE_PYTHON=YES -DPython_ADDITIONAL_VERSIONS=2.7 . ;\
+    make CMAKE_COMMAND=/opt/cmake/bin/cmake && make CMAKE_COMMAND=/opt/cmake/bin/cmake install &&\
+    cd ../ && rm -r domoticz && rm -r /opt/cmake
 
 RUN mkdir -p /opt/domoticz/db/ /opt/domoticz/backup  /scripts
 VOLUME ["/opt/domoticz/scripts", "/opt/domoticz/backups"]
