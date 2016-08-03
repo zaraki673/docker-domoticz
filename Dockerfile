@@ -8,6 +8,7 @@ ENV VERSION=3.4834
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q build-essential\
+                    netcat \
                     cmake libboost-dev libboost-thread-dev libboost-system-dev \
                     libsqlite3-dev curl libcurl4-openssl-dev libusb-dev \
                     zlib1g-dev libssl-dev git\
