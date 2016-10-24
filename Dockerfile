@@ -1,6 +1,6 @@
 #name of container: docker-domoticz
 #versison of container: 0.1.0
-FROM phusion/baseimage
+FROM debian
 MAINTAINER Cyrille Nofficial  "cynoffic@cyrilix.fr"
 
 ENV VERSION=3.4834
@@ -23,7 +23,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q build
                     python3-pip \
                     libxslt-dev \
                     lib32z1-dev \
-                    libboost-python1.58-dev \
+                    libboost-python1.55-dev \
                     wget \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
@@ -53,11 +53,6 @@ RUN git clone https://github.com/domoticz/domoticz.git domoticz ;\
     cd ../ && rm -r domoticz && rm -r /opt/cmake
 
 RUN mkdir -p /opt/domoticz/db/ /opt/domoticz/backup  /scripts
-
-RUN mkdir /etc/service/domoticz
-ADD domoticz.sh /etc/service/domoticz/run
-RUN chmod 755 /etc/service/domoticz/run
-
 VOLUME ["/opt/domoticz/scripts", "/opt/domoticz/backups"]
 
 # to allow access from outside of the container  to the container service
@@ -65,4 +60,4 @@ VOLUME ["/opt/domoticz/scripts", "/opt/domoticz/backups"]
 EXPOSE 8080
 
 # Use baseimage-docker's init system.
-CMD ["/sbin/my_init"]
+CMD ["/opt/domoticz/domoticz"]
