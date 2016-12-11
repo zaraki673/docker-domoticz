@@ -52,8 +52,8 @@ RUN git clone https://github.com/domoticz/domoticz.git domoticz ;\
     make CMAKE_COMMAND=/opt/cmake/bin/cmake && make CMAKE_COMMAND=/opt/cmake/bin/cmake install &&\
     cd ../ && rm -r domoticz && rm -r /opt/cmake
 
-RUN mkdir -p /opt/domoticz/db/ /opt/domoticz/backup  /scripts
-VOLUME ["/opt/domoticz/scripts", "/opt/domoticz/backups"]
+RUN mkdir -p /opt/domoticz/db/ /opt/domoticz/backup  /scripts /opt/domoticz/db
+VOLUME ["/opt/domoticz/scripts", "/opt/domoticz/backups",  "/opt/domoticz/db"]
 
 # to allow access from outside of the container  to the container service
 # at that ports need to allow access from firewall if need to access it outside of the server.
