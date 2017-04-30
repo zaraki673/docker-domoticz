@@ -1,7 +1,7 @@
 #name of container: docker-domoticz
 #versison of container: 0.1.0
-FROM debian
-MAINTAINER Cyrille Nofficial  "cynoffic@cyrilix.fr"
+FROM cyrilix/openzwave
+LABEL MAINTAINER Cyrille Nofficial  "cynoffic@cyrilix.fr"
 
 ENV VERSION=3.5877
 
@@ -30,21 +30,6 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q build
                     && rm -rf /var/lib/apt/lists/*
 
 RUN pip install caldav && pip3 install caldav
-
-# Rebuild cmake because stable version (3.0.2) incompatible with openssl
-RUN wget -O- https://cmake.org/files/v3.5/cmake-3.5.2.tar.gz | tar xzv \
-            && cd cmake-3.5.2 \
-            && ./configure --prefix=/opt/cmake \
-            && make \
-            && make install \
-            && cd ../
-
-
-#Compile OpenZWave
-RUN git clone https://github.com/OpenZWave/open-zwave.git ;\
-    ln -s open-zwave open-zwave-read-only ; \
-    cd open-zwave; \
-    make; cd ..
 
 #Compile Domoticz
 RUN git clone https://github.com/domoticz/domoticz.git domoticz ;\
