@@ -3,7 +3,7 @@
 FROM cyrilix/openzwave
 LABEL MAINTAINER Cyrille Nofficial  "cynoffic@cyrilix.fr"
 
-ENV VERSION=3.8794
+ENV VERSION=3.8796
 
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
