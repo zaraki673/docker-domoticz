@@ -1,9 +1,9 @@
 #name of container: docker-domoticz
 #versison of container: 0.1.0
-FROM cyrilix/openzwave
-LABEL MAINTAINER Cyrille Nofficial  "cynoffic@cyrilix.fr"
+FROM debian
+LABEL MAINTAINER zaraki673  "azazel673@gmail.com"
 
-ENV VERSION=3.8796
+ENV VERSION=3.8797
 
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
@@ -36,11 +36,12 @@ RUN git clone https://github.com/domoticz/domoticz.git domoticz ;\
     cd ../ && rm -r domoticz && rm -r /opt/cmake
 
 RUN mkdir -p /opt/domoticz/db/ /opt/domoticz/backup  /scripts /opt/domoticz/db
-VOLUME ["/opt/domoticz/scripts", "/opt/domoticz/backups",  "/opt/domoticz/db"]
+VOLUME ["/opt/domoticz/scripts", "/opt/domoticz/backups",  "/opt/domoticz/db", "/opt/domoticz/plugins"]
 
 # to allow access from outside of the container  to the container service
 # at that ports need to allow access from firewall if need to access it outside of the server.
 EXPOSE 8080
+EXPOSE 9898  #for xiaomi gateway
 
 # Use baseimage-docker's init system.
 CMD ["/opt/domoticz/domoticz"]
