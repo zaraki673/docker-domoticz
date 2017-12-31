@@ -21,7 +21,6 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q build
                     python3-pip \
                     libxslt-dev \
                     lib32z1-dev \
-                    libboost-python1.55-dev \
                     wget \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
@@ -36,12 +35,11 @@ RUN git clone https://github.com/domoticz/domoticz.git domoticz ;\
     cd ../ && rm -r domoticz && rm -r /opt/cmake
 
 RUN mkdir -p /opt/domoticz/db/ /opt/domoticz/backup  /scripts /opt/domoticz/db
-VOLUME ["/opt/domoticz/scripts", "/opt/domoticz/backups",  "/opt/domoticz/db", "/opt/domoticz/plugins"]
+VOLUME ["/opt/domoticz/scripts", "/opt/domoticz/backups",  "/opt/domoticz/db", "/opt/domoticz/plugins", " /opt/domoticz/www/images/floorplans"]
 
 # to allow access from outside of the container  to the container service
 # at that ports need to allow access from firewall if need to access it outside of the server.
 EXPOSE 8080
-EXPOSE 9898  #for xiaomi gateway
 
 # Use baseimage-docker's init system.
 CMD ["/opt/domoticz/domoticz"]
