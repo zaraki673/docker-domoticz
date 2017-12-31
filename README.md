@@ -27,6 +27,8 @@ or
 
 Where xxxxx is the port assigned by you for the container if not docker will assigned one for it.
 
+Special :for Wiaomi Gateway and other plugins who use multicast use --network=host instead of -p xxxxx:8080
+
 ## Accessing the Domoticz applications:
 
 After that check with your browser at addresses plus the port assigined by docker or you:
