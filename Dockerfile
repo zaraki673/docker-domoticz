@@ -20,7 +20,7 @@ RUN pip3 install caldav
 #Compile Domoticz
 RUN git clone https://github.com/domoticz/domoticz.git domoticz ; cd domoticz; 
 
-RUN git checkout 3.8796
+#RUN git checkout 3.8796
 
 RUN /opt/cmake/bin/cmake -J4 -DCMAKE_BUILD_TYPE=Release -DUSE_PYTHON=YES -DPython_ADDITIONAL_VERSIONS=3.5 .
 RUN make CMAKE_COMMAND=/opt/cmake/bin/cmake && make CMAKE_COMMAND=/opt/cmake/bin/cmake install
