@@ -23,7 +23,6 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q build
                     python3-pip \
                     libxslt-dev \
                     lib32z1-dev \
-                    libboost-python1.55-dev \
                     wget \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
