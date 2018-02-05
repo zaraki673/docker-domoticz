@@ -50,6 +50,7 @@ RUN wget -O- https://cmake.org/files/v3.5/cmake-3.5.2.tar.gz | tar xzv \
 RUN pip3 install caldav
 RUN pip3 install broadlink
 RUN pip3 install pycrypto 
+RUN pip3 install pyaes
 
 #Compile Domoticz
 RUN git clone https://github.com/domoticz/domoticz.git domoticz ;\
