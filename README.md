@@ -19,15 +19,18 @@ To install docker in Ubuntu 15.04 use the commands:
 
 To run container use the command below:
 
-    $ docker run -d -p 8080 –device /dev/ttyUSB1 -v scripts:/scripts cyrilix/docker-domoticz
+    $ docker run -d -p 8080 –device /dev/ttyUSB1 -v scripts:/scripts zaraki673/docker-domoticz
 
 or
 
-    $ docker run -d -p xxxxx:8080 –device /dev/ttyUSB1 cyrilix/docker-domoticz
+    $ docker run -d -p xxxxx:8080 –device /dev/ttyUSB1 zaraki673/docker-domoticz
 
 Where xxxxx is the port assigned by you for the container if not docker will assigned one for it.
 
 Special :for Wiaomi Gateway and other plugins who use multicast use --network=host instead of -p xxxxx:8080
+
+ex :
+ docker run --restart=always -d --name=Domoticz --network=host -v /mnt/3TO/DockerData/Domoticz/scripts:/scripts  -v /mnt/3TO/DockerData/Domoticz/plugins:/opt/domoticz/plugins -v /mnt/3TO/DockerData/Domoticz/floorplans:/opt/domoticz/www/images/floorplans -v /etc/localtime:/etc/localtime:ro -v /mnt/3TO/DockerData/Domoticz/domoticz.db:/opt/domoticz/domoticz.db zaraki673/docker-domoticz
 
 ## Accessing the Domoticz applications:
 
