@@ -58,6 +58,8 @@ RUN git clone https://github.com/domoticz/domoticz.git domoticz ;\
     make CMAKE_COMMAND=/opt/cmake/bin/cmake && make CMAKE_COMMAND=/opt/cmake/bin/cmake install &&\
     cd ../ && rm -r domoticz && rm -r /opt/cmake
 
+RUN cd domoticz/www/styles && git clone https://github.com/flatsiedatsie/domoticz-aurora-theme.git aurora
+
 RUN mkdir -p /opt/domoticz/db/ /opt/domoticz/backup  /scripts /opt/domoticz/db
 VOLUME ["/opt/domoticz/scripts", "/opt/domoticz/backups",  "/opt/domoticz/db", "/opt/domoticz/plugins", " /opt/domoticz/www/images/floorplans"]
 
