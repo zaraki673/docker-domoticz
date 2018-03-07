@@ -3,8 +3,6 @@
 FROM debian
 LABEL MAINTAINER zaraki673  "azazel673@gmail.com"
 
-ENV VERSION=3.8796
-
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q build-essential\
@@ -15,6 +13,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q build
                     libudev-dev \
                     mplayer2 \
                     python3 \
+					python3-dev
                     python \
                     python-dev \
                     python-libxml2 \
@@ -28,16 +27,6 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q build
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
          
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q build-essential\
-                    netcat cmake libboost-dev libboost-thread-dev libboost-system-dev \
-                    libsqlite3-dev curl libcurl4-openssl-dev libusb-dev \
-                    zlib1g-dev libssl-dev git libudev-dev mplayer2 \
-                    python3 python3-dev python-libxml2 libxml2-dev \
-                    python3-pip libxslt-dev lib32z1-dev wget \
-                    && apt-get clean \
-                    && rm -rf /tmp/* /var/tmp/*  \
-                    && rm -rf /var/lib/apt/lists/*
-
 # Rebuild cmake because stable version (3.0.2) incompatible with openssl
 RUN wget -O- https://cmake.org/files/v3.5/cmake-3.5.2.tar.gz | tar xzv \
             && cd cmake-3.5.2 \
@@ -54,7 +43,7 @@ RUN pip3 install pyaes
 
 #Compile Domoticz
 RUN git clone https://github.com/domoticz/domoticz.git domoticz ;\
-    cd domoticz; git checkout ${VERSION} ;/opt/cmake/bin/cmake -J4 -DCMAKE_BUILD_TYPE=Release -DUSE_PYTHON=YES -DPython_ADDITIONAL_VERSIONS=3.5 . ;\
+    cd domoticz;/opt/cmake/bin/cmake -J4 -DCMAKE_BUILD_TYPE=Release -DUSE_PYTHON=YES -DPython_ADDITIONAL_VERSIONS=3.5 . ;\
     make CMAKE_COMMAND=/opt/cmake/bin/cmake && make CMAKE_COMMAND=/opt/cmake/bin/cmake install &&\
     cd ../ && rm -r domoticz && rm -r /opt/cmake
 
