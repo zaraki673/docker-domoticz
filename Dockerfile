@@ -12,14 +12,14 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q build
                     zlib1g-dev libssl-dev git\
                     libudev-dev \
                     mplayer2 \
-                    python3 \
-                    python3-dev \
+                    python3.6 \
+                    python3.6-dev \
                     python \
                     python-dev \
                     python-libxml2 \
                     libxml2-dev \
                     python-pip \
-                    python3-pip \
+                    python3.6-pip \
                     libxslt-dev \
                     lib32z1-dev \
                     wget \
