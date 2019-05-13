@@ -19,7 +19,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q build
                     python-libxml2 \
                     libxml2-dev \
                     python-pip \
-                    python3.6-pip \
+                    python3-pip \
                     libxslt-dev \
                     lib32z1-dev \
                     wget \
