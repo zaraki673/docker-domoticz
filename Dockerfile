@@ -28,12 +28,12 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q build
                     && rm -rf /var/lib/apt/lists/*
          
 # Rebuild cmake because stable version (3.0.2) incompatible with openssl
-RUN wget -O- https://cmake.org/files/v3.5/cmake-3.5.2.tar.gz | tar xzv \
-            && cd cmake-3.5.2 \
-            && ./configure --prefix=/opt/cmake \
-            && make \
-            && make install \
-            && cd ../
+#RUN wget -O- https://cmake.org/files/v3.5/cmake-3.5.2.tar.gz | tar xzv \
+#            && cd cmake-3.5.2 \
+#            && ./configure --prefix=/opt/cmake \
+#            && make \
+#            && make install \
+#            && cd ../
 
 
 RUN pip3 install caldav
