@@ -42,7 +42,7 @@ RUN pip3 install pycrypto
 RUN pip3 install pyaes
 
 #Compile Domoticz
-RUN git clone https://github.com/domoticz/domoticz.git domoticz ;\
+RUN git clone -b development https://github.com/domoticz/domoticz.git domoticz ;\
     cd domoticz;/opt/cmake/bin/cmake -J4 -DCMAKE_BUILD_TYPE=Release -DUSE_PYTHON=YES -DPython_ADDITIONAL_VERSIONS=3.5 . ;\
     make CMAKE_COMMAND=/opt/cmake/bin/cmake && make CMAKE_COMMAND=/opt/cmake/bin/cmake install &&\
     cd ../ && rm -r domoticz && rm -r /opt/cmake
