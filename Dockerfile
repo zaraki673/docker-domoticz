@@ -28,13 +28,16 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q build
                     && rm -rf /var/lib/apt/lists/*
          
 # Rebuild cmake because stable version (3.0.2) incompatible with openssl
-RUN wget -O- https://github.com/Kitware/CMake/releases/download/v3.14.4/cmake-3.14.4.tar.gz | tar xzv \
-            && cd cmake-3.14.4 \
+RUN wget -O- https://github.com/Kitware/CMake/releases/download/v3.14.5/cmake-3.14.5.tar.gz | tar xzv \
+            && cd cmake-3.14.5 \
             && ./configure --prefix=/opt/cmake \
             && make \
             && make install \
             && cd ../
-
+            
+RUN wget -O- https://dl.bintray.com/boostorg/release/1.70.0/source/boost_1_70_0.tar.gz | tar zxv \
+            && cd boost_1_70_0 \
+            && ./bootstrap.sh
 
 RUN pip3 install caldav
 RUN pip3 install broadlink
