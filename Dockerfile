@@ -38,7 +38,8 @@ RUN wget -O- https://github.com/Kitware/CMake/releases/download/v3.14.5/cmake-3.
 RUN wget -O- https://dl.bintray.com/boostorg/release/1.70.0/source/boost_1_70_0.tar.gz | tar zxv \
             && cd boost_1_70_0 \
             && ./bootstrap.sh \
-            && ./b2
+            && ./b2 install
+#RUN export $PATH=$PATH;\boost_1_70_0\bin
 
 RUN pip3 install caldav
 RUN pip3 install broadlink
