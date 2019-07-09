@@ -55,11 +55,37 @@ RUN git clone -b development https://github.com/domoticz/domoticz.git domoticz ;
 RUN cd /opt/domoticz/www/styles && git clone https://github.com/flatsiedatsie/domoticz-aurora-theme.git aurora && git clone https://github.com/EdddieN/machinon-domoticz_theme.git machinon
 
 RUN mkdir -p /opt/domoticz/db/ /opt/domoticz/backup  /scripts /opt/domoticz/db
+
+
+
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install openssh-server sudo
+ADD set_root_pw.sh /set_root_pw.sh
+ADD run.sh /run.sh
+RUN chmod +x /*.sh
+RUN mkdir -p /var/run/sshd && sed -i "s/UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config \
+  && sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
+  && touch /root/.Xauthority \
+  && true
+
+## Set a default user. Available via runtime flag `--user docker`
+## Add user to 'staff' group, granting them write privileges to /usr/local/lib/R/site.library
+## User should also have & own a home directory, but also be able to sudo
+RUN useradd docker \
+        && passwd -d docker \
+        && mkdir /home/docker \
+        && chown docker:docker /home/docker \
+        && addgroup docker staff \
+        && addgroup docker sudo \
+        && true
+
+
+
+
 VOLUME ["/opt/domoticz/scripts", "/opt/domoticz/backups",  "/opt/domoticz/db", "/opt/domoticz/plugins", " /opt/domoticz/www/images/floorplans", " /opt/domoticz/www/templates"]
 
 # to allow access from outside of the container  to the container service
 # at that ports need to allow access from firewall if need to access it outside of the server.
-EXPOSE 8080
+EXPOSE 8080,22
 
 # Use baseimage-docker's init system.
 CMD ["/opt/domoticz/domoticz"]
