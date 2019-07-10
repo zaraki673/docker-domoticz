@@ -5,13 +5,13 @@ LABEL MAINTAINER zaraki673  "azazel673@gmail.com"
 
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q build-essential\
+RUN apt-get update 
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -q build-essential\
                     netcat \
                     cmake  \
                     libsqlite3-dev curl libcurl4-openssl-dev libusb-dev \
                     zlib1g-dev libssl-dev git\
                     libudev-dev \
-                    mplayer2 \
                     python3 \
                     python3-dev \
                     python \
@@ -58,7 +58,8 @@ RUN mkdir -p /opt/domoticz/db/ /opt/domoticz/backup  /scripts /opt/domoticz/db
 
 
 
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install openssh-server sudo
+RUN apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install openssh-server sudo
 ADD set_root_pw.sh /set_root_pw.sh
 ADD run.sh /run.sh
 RUN chmod +x /*.sh
