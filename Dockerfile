@@ -1,6 +1,6 @@
 #name of container: docker-domoticz
 #versison of container: 0.1.0
-FROM debian:latest
+FROM debian:buster-slim
 LABEL MAINTAINER zaraki673  "azazel673@gmail.com"
 
 #add repository and update the container
