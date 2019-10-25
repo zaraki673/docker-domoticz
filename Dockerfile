@@ -56,18 +56,6 @@ RUN cd /opt/domoticz/www/styles && git clone https://github.com/flatsiedatsie/do
 
 RUN mkdir -p /opt/domoticz/db/ /opt/domoticz/backup  /scripts /opt/domoticz/db
 
-
-
-RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install openssh-server sudo
-ADD set_root_pw.sh /set_root_pw.sh
-ADD run.sh /run.sh
-RUN chmod +x /*.sh
-RUN mkdir -p /var/run/sshd && sed -i "s/UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config \
-  && sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
-  && touch /root/.Xauthority \
-  && true
-
 ## Set a default user. Available via runtime flag `--user docker`
 ## Add user to 'staff' group, granting them write privileges to /usr/local/lib/R/site.library
 ## User should also have & own a home directory, but also be able to sudo
@@ -86,7 +74,7 @@ VOLUME ["/opt/domoticz/scripts", "/opt/domoticz/backups",  "/opt/domoticz/db", "
 
 # to allow access from outside of the container  to the container service
 # at that ports need to allow access from firewall if need to access it outside of the server.
-EXPOSE 8080 22 9440
+EXPOSE 8080 9440
 
 # Use baseimage-docker's init system.
 CMD ["/opt/domoticz/domoticz"]
