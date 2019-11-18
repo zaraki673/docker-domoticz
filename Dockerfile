@@ -56,20 +56,6 @@ RUN cd /opt/domoticz/www/styles && git clone https://github.com/flatsiedatsie/do
 
 RUN mkdir -p /opt/domoticz/db/ /opt/domoticz/backup  /scripts /opt/domoticz/db
 
-## Set a default user. Available via runtime flag `--user docker`
-## Add user to 'staff' group, granting them write privileges to /usr/local/lib/R/site.library
-## User should also have & own a home directory, but also be able to sudo
-RUN useradd docker \
-        && passwd -d docker \
-        && mkdir /home/docker \
-        && chown docker:docker /home/docker \
-        && addgroup docker staff \
-        && addgroup docker sudo \
-        && true
-
-
-
-
 VOLUME ["/opt/domoticz/scripts", "/opt/domoticz/backups",  "/opt/domoticz/db", "/opt/domoticz/plugins", " /opt/domoticz/www/images/floorplans", " /opt/domoticz/www/templates"]
 
 # to allow access from outside of the container  to the container service
