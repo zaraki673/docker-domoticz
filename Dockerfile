@@ -28,15 +28,15 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -q build-essential\
                     && rm -rf /var/lib/apt/lists/*
          
 # Rebuild cmake because stable version (3.0.2) incompatible with openssl
-RUN wget -O- https://github.com/Kitware/CMake/releases/download/v3.14.5/cmake-3.14.5.tar.gz | tar xzv \
-            && cd cmake-3.14.5 \
+RUN wget -O- https://github.com/Kitware/CMake/releases/download/v3.17.0/cmake-3.17.0.tar.gz | tar xzv \
+            && cd cmake-3.17.0 \
             && ./configure --prefix=/opt/cmake \
             && make \
             && make install \
             && cd ../
             
-RUN wget -O- https://dl.bintray.com/boostorg/release/1.70.0/source/boost_1_70_0.tar.gz | tar zxv \
-            && cd boost_1_70_0 \
+RUN wget -O- https://dl.bintray.com/boostorg/release/1.72.0/source/boost_1_72_0.tar.gz | tar zxv \
+            && cd boost_1_72_0 \
             && ./bootstrap.sh \
             && ./b2 install
 #RUN export $PATH=$PATH;\boost_1_70_0\bin
@@ -47,8 +47,8 @@ RUN pip3 install pycrypto
 RUN pip3 install pyaes
 
 #Compile Domoticz
-RUN git clone -b development https://github.com/domoticz/domoticz.git domoticz ;\
-    cd domoticz;/opt/cmake/bin/cmake -J4 -DCMAKE_BUILD_TYPE=Release -DUSE_PYTHON=YES -DPython_ADDITIONAL_VERSIONS=3.5 . ;\
+RUN git clone -b development https://github.com/domoticz/domoticz.git domoticz 
+RUN cd domoticz;/opt/cmake/bin/cmake -J4 -DCMAKE_BUILD_TYPE=Release -DUSE_PYTHON=YES -DPython_ADDITIONAL_VERSIONS=3.5 . ;\
     make CMAKE_COMMAND=/opt/cmake/bin/cmake && make CMAKE_COMMAND=/opt/cmake/bin/cmake install &&\
     cd ../ && rm -r domoticz && rm -r /opt/cmake
 
