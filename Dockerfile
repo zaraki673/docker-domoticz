@@ -20,6 +20,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -q build-essential\
                     libxml2-dev \
                     python-pip \
                     python3-pip \
+                    liblua5.3 \
+                    liblua5.3-dev \
                     libxslt-dev \
                     lib32z1-dev \
                     wget \
