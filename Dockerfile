@@ -22,6 +22,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -q build-essential\
                     python3-pip \
                     liblua5.3 \
                     liblua5.3-dev \
+                    libcereal \
+                    libcereal-dev \
                     libxslt-dev \
                     lib32z1-dev \
                     wget \
