@@ -9,7 +9,7 @@ RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -q build-essential\
                     netcat \
                     cmake  \
-                    libsqlite3-dev curl libcurl4-openssl-dev libusb-dev \
+                    libsqlite3-dev curl libusb-dev \
                     zlib1g-dev libssl-dev git\
                     libudev-dev \
                     python3 \
@@ -20,12 +20,12 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -q build-essential\
                     libxml2-dev \
                     python-pip \
                     python3-pip \
+                    libxslt-dev \
+                    lib32z1-dev \
                     liblua5.3 \
                     liblua5.3-dev \
                     libcereal-dev \
-                    libxslt-dev \
-                    lib32z1-dev \
-                    wget \
+                    wget libssl-dev git libcurl4-gnutls-dev libcereal-dev uthash-dev\
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
@@ -51,9 +51,8 @@ RUN pip3 install pyaes
 
 #Compile Domoticz
 RUN git clone -b development https://github.com/domoticz/domoticz.git domoticz 
-RUN cd domoticz;/opt/cmake/bin/cmake -J4 -DCMAKE_BUILD_TYPE=Release -DUSE_PYTHON=YES -DPython_ADDITIONAL_VERSIONS=3.5 . ;\
-    make CMAKE_COMMAND=/opt/cmake/bin/cmake && make CMAKE_COMMAND=/opt/cmake/bin/cmake install &&\
-    cd ../ && rm -r domoticz && rm -r /opt/cmake
+RUN cd domoticz;git checkout external-libs;/opt/cmake/bin/cmake -J4 -DCMAKE_BUILD_TYPE=Release -DUSE_PYTHON=YES -DPython_ADDITIONAL_VERSIONS=3.5 . ;\
+    make CMAKE_COMMAND=/opt/cmake/bin/cmake && make CMAKE_COMMAND=/opt/cmake/bin/cmake install 
 
 RUN cd /opt/domoticz/www/styles && git clone https://github.com/flatsiedatsie/domoticz-aurora-theme.git aurora && git clone https://github.com/EdddieN/machinon-domoticz_theme.git machinon
 
