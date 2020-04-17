@@ -29,7 +29,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -q build-essential\
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
-         
+                    
+RUN mkdir /src && cd /src
+
 # Rebuild cmake because stable version (3.0.2) incompatible with openssl
 RUN wget -O- https://github.com/Kitware/CMake/releases/download/v3.17.0/cmake-3.17.0.tar.gz | tar xzv \
             && cd cmake-3.17.0 \
@@ -49,14 +51,15 @@ RUN pip3 install broadlink
 RUN pip3 install pycrypto 
 RUN pip3 install pyaes
 
+RUN cd /opt
 #Compile Domoticz
 RUN git clone -b development https://github.com/domoticz/domoticz.git domoticz 
 RUN cd domoticz;git checkout external-libs;/opt/cmake/bin/cmake -J4 -DCMAKE_BUILD_TYPE=Release -DUSE_PYTHON=YES -DPython_ADDITIONAL_VERSIONS=3.5 . ;\
-    make CMAKE_COMMAND=/opt/cmake/bin/cmake && make CMAKE_COMMAND=/opt/cmake/bin/cmake install 
+    make CMAKE_COMMAND=/opt/cmake/bin/cmake #&& make CMAKE_COMMAND=/opt/cmake/bin/cmake install 
 
 RUN cd /opt/domoticz/www/styles && git clone https://github.com/flatsiedatsie/domoticz-aurora-theme.git aurora && git clone https://github.com/EdddieN/machinon-domoticz_theme.git machinon
 
-RUN mkdir -p /opt/domoticz/db/ /opt/domoticz/backup  /scripts /opt/domoticz/db
+RUN mkdir -p /opt/domoticz/backup  /opt/scripts /opt/domoticz/db
 
 VOLUME ["/opt/domoticz/scripts", "/opt/domoticz/backups",  "/opt/domoticz/db", "/opt/domoticz/plugins", " /opt/domoticz/www/images/floorplans", " /opt/domoticz/www/templates"]
 
