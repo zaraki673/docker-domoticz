@@ -40,8 +40,8 @@ RUN wget -O- https://github.com/Kitware/CMake/releases/download/v3.17.0/cmake-3.
             && make install \
             && cd ../
             
-RUN wget -O- https://dl.bintray.com/boostorg/release/1.72.0/source/boost_1_72_0.tar.gz | tar zxv \
-            && cd boost_1_72_0 \
+RUN wget -O- https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.gz | tar zxv \
+            && cd boost_1_76_0 \
             && ./bootstrap.sh \
             && ./b2 install
 #RUN export $PATH=$PATH;\boost_1_70_0\bin
