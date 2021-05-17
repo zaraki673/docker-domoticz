@@ -25,7 +25,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -q build-essential\
                     liblua5.3 \
                     liblua5.3-dev \
                     libcereal-dev \
-                    wget libssl-dev git libcurl4-gnutls-dev libcereal-dev uthash-dev\
+                    wget libssl-dev git libcurl4-gnutls-dev libcereal-dev uthash-dev rustc\
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
